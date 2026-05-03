@@ -51,7 +51,7 @@ Skills tracking based on Apple documentation and gap analysis.
 | Topic | Skill | Status |
 |-------|-------|--------|
 | Instruments workflows, profiling | `performance/profiling` | ✅ Complete |
-| SwiftUI debugging, view identity, body re-evaluation | `performance/swiftui-debugging` | ✅ Complete |
+| SwiftUI debugging, view identity, body re-evaluation, gesture/animation interaction | `swiftui/swiftui-debugging` | ✅ Complete |
 
 ### Navigation & Architecture
 | Topic | Skill | Status |

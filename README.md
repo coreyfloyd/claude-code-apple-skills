@@ -296,13 +296,13 @@ Generate production-ready Swift code that adapts to your project:
 | `swiftui/text-editing` | AttributedString, TextEditor, rich text formatting |
 | `swiftui/toolbars` | Customizable toolbars, search integration, transitions |
 | `swiftui/charts-3d` | 3D chart visualization |
+| `swiftui/swiftui-debugging` | View identity, body re-evaluation, lazy loading, `_printChanges()`, gesture/animation interaction pitfalls |
 
 ## Performance Skills
 
 | Skill | What It Covers |
 |-------|----------------|
 | `performance/profiling` | Instruments workflows, Time Profiler, Allocations, hangs |
-| `performance/swiftui-debugging` | View identity, body re-evaluation, lazy loading, `_printChanges()` |
 
 ## App Store Skills
 
