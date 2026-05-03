@@ -63,6 +63,12 @@ What SwiftUI performance problem are you seeing?
 |     +- @GestureState resets before transition completes (snap-back)
 |     +- ScrollView pan recognizer eats outer DragGesture
 |
++- Animation/layout bug where two reasoned fixes already failed
+|  +- Read subtree-bisection.md
+|     +- Replace suspect subtree with Color.red, confirm parent works
+|     +- Add halves back to localize the breaking layer
+|     +- Common cause: UIViewRepresentable hosting boundary
+|
 +- General "my SwiftUI app is slow" (unknown cause)
 |  +- Start with body-reevaluation.md, then common-pitfalls.md
 |  +- Use Instruments SwiftUI template (see Debugging Tools below)
@@ -256,5 +262,6 @@ View in Instruments with the **os_signpost** instrument to count body evaluation
 | [lazy-loading.md](lazy-loading.md) | Lazy vs eager containers, `List`, `ForEach`, grid performance |
 | [common-pitfalls.md](common-pitfalls.md) | `AnyView`, object creation in body, over-observation, expensive computations |
 | [gesture-pitfalls.md](gesture-pitfalls.md) | Gesture/animation interaction bugs: coordinate-space feedback loop, `@GestureState` snap-back, ScrollView pan conflicts |
+| [subtree-bisection.md](subtree-bisection.md) | Empirical bisection for animation/layout bugs that resist static analysis: replace suspect subtree with `Color.red`, add halves back, localize the breaking layer (often a `UIViewRepresentable` hosting boundary) |
 | [../profiling/SKILL.md](../profiling/SKILL.md) | General Instruments profiling (Time Profiler, Memory, Energy) |
 | [../../swiftui/data-flow/SKILL.md](../../swiftui/data-flow/SKILL.md) | The identity/lifetime mental model behind all of the above -- read it when fixes feel like guesswork |
