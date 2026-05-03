@@ -1,15 +1,15 @@
 ---
 name: swiftui-debugging
-description: Diagnose SwiftUI performance issues including unnecessary re-renders, view identity problems, and slow body evaluations. Use when SwiftUI views are slow, janky, or re-rendering too often.
+description: Diagnose SwiftUI performance and gesture/animation interaction issues including unnecessary re-renders, view identity problems, slow body evaluations, drag-gesture jitter, and snap-back glitches. Use when SwiftUI views are slow, janky, re-rendering too often, or when gestures feel wrong (jitter, resistance, snap-back, gestures not firing).
 allowed-tools: [Read, Glob, Grep]
 last_verified: 2026-07-16
 review_by: 2027-06-22
 os_version: iOS 27 / macOS 27
 ---
 
-# SwiftUI Performance Debugging
+# SwiftUI Debugging
 
-Systematic guide for diagnosing and fixing SwiftUI performance problems: unnecessary view re-evaluations, identity issues, expensive body computations, and lazy loading mistakes.
+Systematic guide for diagnosing and fixing SwiftUI bugs: unnecessary view re-evaluations, identity issues, expensive body computations, lazy loading mistakes, and gesture/animation interaction bugs (jitter, snap-back, gesture-not-firing).
 
 ## When This Skill Activates
 
@@ -23,6 +23,9 @@ Use this skill when the user:
 - Wants to understand SwiftUI view identity or diffing
 - Uses `AnyView` and asks about performance implications
 - Has a hang or stutter traced to SwiftUI rendering
+- Reports a `DragGesture` that doesn't fire, jitters, snaps back, or feels like it's resisting the finger
+- Sees a view "follow but oscillate" during a drag, especially worse on slow drags than fast flicks
+- Has a transition (`.move`, `.opacity`) that snaps to a wrong start position before animating out
 
 ## The Performance Loop
 
@@ -53,6 +56,12 @@ What SwiftUI performance problem are you seeing?
 |  +- Read common-pitfalls.md
 |     +- AnyView type erasure, object creation in body
 |     +- Over-observation, expensive computations
+|
++- DragGesture jitters / view feels resistant / drag doesn't fire / transition snaps before animating
+|  +- Read gesture-pitfalls.md
+|     +- Coordinate-space feedback loop (.gesture on child of .offset parent)
+|     +- @GestureState resets before transition completes (snap-back)
+|     +- ScrollView pan recognizer eats outer DragGesture
 |
 +- General "my SwiftUI app is slow" (unknown cause)
 |  +- Start with body-reevaluation.md, then common-pitfalls.md
@@ -246,5 +255,6 @@ View in Instruments with the **os_signpost** instrument to count body evaluation
 | [body-reevaluation.md](body-reevaluation.md) | What triggers body, `_printChanges()`, `@Observable` vs `ObservableObject` |
 | [lazy-loading.md](lazy-loading.md) | Lazy vs eager containers, `List`, `ForEach`, grid performance |
 | [common-pitfalls.md](common-pitfalls.md) | `AnyView`, object creation in body, over-observation, expensive computations |
+| [gesture-pitfalls.md](gesture-pitfalls.md) | Gesture/animation interaction bugs: coordinate-space feedback loop, `@GestureState` snap-back, ScrollView pan conflicts |
 | [../profiling/SKILL.md](../profiling/SKILL.md) | General Instruments profiling (Time Profiler, Memory, Energy) |
 | [../../swiftui/data-flow/SKILL.md](../../swiftui/data-flow/SKILL.md) | The identity/lifetime mental model behind all of the above -- read it when fixes feel like guesswork |
